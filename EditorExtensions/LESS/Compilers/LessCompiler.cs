@@ -25,10 +25,10 @@ namespace MadsKristensen.EditorExtensions.Less
             parameters.Add("service", ServiceName);
             parameters.Add("sourceFileName", sourceFileName);
             parameters.Add("targetFileName", targetFileName);
-            parameters.Add("mapFileName", targetFileName + ".map");
+            parameters.Add("mapFileName", targetFileName.Replace(".css", ".less") + ".map");
 
             if (GenerateSourceMap)
-                parameters.Add("sourceMapURL");
+                parameters.Add("sourceMapURL", targetFileName.Replace(".css", ".less") + ".map");
 
             if (WESettings.Instance.Less.StrictMath)
                 parameters.Add("strictMath");

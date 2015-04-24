@@ -265,10 +265,9 @@ namespace MadsKristensen.EditorExtensions.Compilers
         {
             Encoding encoding = _document == null ? null : _document.Encoding;
             var sourceText = await FileHelpers.ReadAllTextRetry(sourcePath, encoding);
-            var settings = new CommonMark.CommonMarkSettings
-            {
-                OutputFormat = CommonMark.OutputFormat.Html
-            };
+            var settings = CommonMark.CommonMarkSettings.Default.Clone();
+            settings.OutputFormat = CommonMark.OutputFormat.Html;
+
             var result = CommonMark.CommonMarkConverter.Convert(sourceText, settings);
 
             if (!string.IsNullOrEmpty(targetPath) &&
